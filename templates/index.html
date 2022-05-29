@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="icon" href="static/assets/images/favicon.ico" /> <!-- Favicon -->
+	<title>Arnaldoit</title>
+
+	<link rel="stylesheet" type="text/css" href="static/assets/css/style.css">
+</head>
+<body>
+	<div class="head">
+		<h2>Arnal<red style="color: red;">do</red><blue style="color: blue;">it</blue></h2>
+
+		<form method="POST" action="/" enctype=multipart/form-data>
+			<img class="PP" src="static/assets/images/anon.jpeg" alt="Anon"/>
+			<textarea id="tweetArea" class="tweetArea" maxlength="250" autocomplete="off" name="content" placeholder="What's happening?"></textarea>
+			
+			<!-- <hr style="margin-left: 50px;"> -->
+			<img class="tweetUpload" src="static/assets/images/upload.png" alt="Upload" onclick="document.getElementById('selectImage').click();">
+			<input type="file" name="image" id="selectImage" onchange="PreviewImage();" style="visibility: hidden;" />
+			
+			<button onclick="checkLength()" class="tweetButton" type="submit"> Tweet </button>
+
+			<div id="imagePreview" ></div>
+		</form>
+	</div>
+	
+	{% for post in posts %}
+		<div class="postBody">
+			<img style="margin-top: 15px;" class="PP" src="https://imgur.com/zPKzLoeh.png"/>
+			<div class="postText">
+				<h3>Anonymous <date>{{ post[1] }}</date></h3>
+				<p style="margin-top: -15px;">{{ post[2] }}</p>
+			</div>
+			{% if post[3] %}
+				<img class="postImage" src="{{url_for('static',filename='uploads/'+post[3])}}" alt="Post Image">
+			{% endif %}
+			<!-- like button -->
+			<!-- <div class="likeArea">
+				<img src="static/assets/images/blank-heart.png" alt="Like"/>
+				<p><strong> 10k </strong></p>
+			</div> -->
+
+		</div>
+	{% endfor %}
+</body>
+
+
+
+<script type="text/javascript">
+	// If text area is empty, hide the upload button
+	tweetArea.addEventListener('keyup', function(){
+		console.log("function called");
+		if(tweetArea.value)
+			document.getElementsByClassName("tweetUpload")[0].style.visibility = "visible";
+		else
+			document.getElementsByClassName("tweetUpload")[0].style.visibility = "hidden";
+	});
+	// End of text area empty check
+
+	// Auto size textarea
+	const tx = document.getElementsByTagName("textarea");
+	for (let i=0; i<tx.length; i++) {
+		tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+		tx[i].addEventListener("input", OnInput, false);
+	}
+
+	function OnInput() {
+		this.style.height = "20px";
+		this.style.height = (this.scrollHeight) + "px";
+	}
+	// End of auto size textarea
+
+	function PreviewImage() {
+		var oFReader = new FileReader();
+		oFReader.readAsDataURL(document.getElementById("selectImage").files[0]);
+
+		oFReader.onload = function(oFREvent) {
+			document.getElementById("imagePreview").innerHTML = `<img class="postImage" src="${oFREvent.target.result}" />`;
+			// style="width: 100px; height: 100px;"
+		};
+	};
+
+	var clicked = false; 
+	function checkLength() {
+		if(!tweetArea.value) {
+			if(!clicked) {
+				var warning = document.createElement("p");
+					warning.innerHTML = "Please enter some text";
+					warning.style.color = "red";
+					warning.style.fontSize = "12px";
+				document.getElementsByClassName("head")[0].appendChild(warning);
+				clicked = true;
+			}
+			return;
+		}
+	}
+</script>
+</html>

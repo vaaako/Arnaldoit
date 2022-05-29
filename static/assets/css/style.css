@@ -1,0 +1,114 @@
+body {
+	font-family: Arial;
+	--marginLeft: 10%;
+	--size: 500px; /* Var default size  */
+	--small-imageSize: 25px;
+}
+
+.head {
+	width: var(--size);
+	height: auto;
+	
+	border: 1px solid lightgray;
+
+	padding: 0px 15px;	
+	margin: 20px auto; /* Center using margin left and right auto */
+}
+
+.PP {
+	position: absolute;
+	border-radius: 50%;
+	height: 35px;
+}
+
+.tweetArea {
+	font: 20px Arial;
+	width: 90%;
+	height: 20px;
+
+	resize: none;
+	border: none;
+	outline: none;
+
+	margin-top: 5px;
+	margin-left: var(--marginLeft);
+
+}
+
+.tweetUpload {
+	/* --imageSize: 1.5%; */
+	width: var(--small-imageSize);
+	height: auto;
+	visibility: hidden;
+
+	cursor: pointer;
+	position: absolute;
+	margin-top: 40px;
+
+}
+
+.tweetButton {
+	background: rgb(29, 155, 240);
+	cursor: pointer;
+
+	/* Text */
+	font-weight: 900;
+	color: white;
+
+	/* Button */
+	width: 80px;
+	height: 40px;
+	border: none;
+	border-radius: 30px;
+
+	/* Margin  */
+	margin: 10px auto;
+	margin-left: calc(var(--size) - 80px);
+}
+
+
+
+.postBody {
+	width: var(--size);
+	height: auto;
+
+	border: 1px solid;
+	border-color: lightgray;
+
+	padding: 0px 15px;
+	margin: 10px auto;
+}
+
+/* Name / Date / Post */
+.postText {
+	font-size: 15px;
+	margin-left: var(--marginLeft);
+}
+
+date {
+	font-size: 10px;
+	color: gray;
+	cursor: context-menu;
+}
+
+.postImage {
+	width: var(--size);
+	object-fit: contain;
+	border-radius: 20px;
+}
+
+/* 
+.likeArea img {
+	width: var(--small-imageSize);
+	height: auto;
+
+	margin-top: 10px;
+	margin-left: calc(var(--size) - var(--small-imageSize) - 40px);
+	cursor: pointer;
+}
+
+.likeArea p {
+	display: inline;
+	font-size: 14px;
+	color: gray;
+} */
