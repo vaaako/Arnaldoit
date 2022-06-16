@@ -2,13 +2,13 @@
 Simple twitter clone using flask
 
 ## Run
+**Make the database**
+- `cat schema.sql | arnaldata.db`
+<br>
 
-### On terminal<br> create database using
-`cat schema.sql | arnaldata.db`
-
-### Then run using flask
-`export FLASK_APP=server.py`  
-`python3 -m flask run --host=0.0.0.0`
+**Then run using flask**
+  - `export FLASK_APP=server.py`  
+  - `python3 -m flask run --host=0.0.0.0`
 
 
 
